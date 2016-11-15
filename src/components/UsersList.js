@@ -1,5 +1,5 @@
 import React from 'react';
-import UsersContainer from './UsersContainer.js';
+import UsersContainer from './UsersContainer';
 
 const UsersList= (props) => {
   const usersContainersList= props.users.map((userContainer, index) => {

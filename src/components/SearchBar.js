@@ -11,7 +11,7 @@ class SearchBar extends React.Component {
 
   handleSearchChangeLocal(e){
     this.props.handleSearchChange(e.target.value, this.props.namePosition);
-    this.setState({queryText: e.target.value});
+    this.setState({searchText: e.target.value});
   }
 
   capitalizeNamePosition(str){

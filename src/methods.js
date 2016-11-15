@@ -1,5 +1,5 @@
 //function that takes in flattened array of user objects and returns
-//array of objects sorted and group user objects by first or last letter of name
+//array of objects sorted and grouped by first letter of first or last name
 export default function sortAndGroupByFirstLetter(arr, position){
       var sortedUsers= arr.sort((a, b) => {
         if(a.name[position] < b.name[position]) return -1;
