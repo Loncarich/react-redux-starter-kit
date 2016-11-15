@@ -1,4 +1,5 @@
 import React from 'react';
+import methods from '../methods.js';
 
 class SearchBar extends React.Component {
   constructor(props){
@@ -14,18 +15,14 @@ class SearchBar extends React.Component {
     this.setState({searchText: e.target.value});
   }
 
-  capitalizeNamePosition(str){
-    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
-  }
-
   render(){
     return (
       <div className= 'col-md-4 col-sm-3 col-xs-5 search-bar'>
         <input
           id="form-control"
           type="text"
-          placeholder={'Search '+ this.capitalizeNamePosition(this.props.namePosition) + ' Name'}
-          value={this.state.queryText}
+          placeholder={'Search '+ methods.capitalizeFirstLetter(this.props.namePosition) + ' Name'}
+          value={this.state.searchText}
           onChange={this.handleSearchChangeLocal}
           />
       </div>

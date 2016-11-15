@@ -5,7 +5,7 @@ import SearchBar from './SearchBar';
 import SortBy from './SortBy';
 import Modal from 'react-bootstrap/lib/Modal';
 import Button from 'react-bootstrap/lib/Button';
-import sortAndGroupByFirstLetter from '../methods.js';
+import methods from '../methods.js';
 
 class App extends React.Component {
   constructor(props){
@@ -29,52 +29,27 @@ class App extends React.Component {
       url: 'https://randomuser.me/api/?results=60',
       dataType: 'json',
       success: function(data) {
-        const finalResults= sortAndGroupByFirstLetter(data.results, 'last');
+        const finalResults= methods.sortAndGroupByFirstLetter(data.results, 'last');
         self.setState({usersFull: finalResults, usersToRender: finalResults})
       }
     });
   }
 
-  flattenAndSortUsers(arr, position){
-    var tempUsers= [];
-    arr.forEach((letter) => {
-      letter.users.forEach((user) =>{
-        tempUsers.push(user);
-      })
-    });
-    return sortAndGroupByFirstLetter(tempUsers, position);
-  }
-
   handleSortByChange(option){
     var usersCopy= this.state.usersToRender.slice();
-    const newUsers= this.flattenAndSortUsers(usersCopy, option);
+    const newUsers= methods.flattenAndSortUsers(usersCopy, option);
     this.setState({usersToRender: newUsers, namePosition: option});
   }
 
   handleSearchChange(searchText, position){
-    var searchTextLower= searchText.trim().toLowerCase();
-    var usersCopy= this.state.usersFull.slice();
-    var sortedUsers= this.flattenAndSortUsers(usersCopy, this.state.namePosition);
-    var usersTemp= sortedUsers.filter((letter) => {
-      var tempLetter= letter.users.filter((user) => {
-        var name= user.name[position];
-        return name.toLowerCase().match(searchTextLower);
-      });
-      letter.users= tempLetter;
-      return tempLetter.length > 0;
-    });
-    this.setState({usersToRender: usersTemp});
+    var usersCopy= this.state.usersFull.slice(),
+        sortedUsers= methods.flattenAndSortUsers(usersCopy, this.state.namePosition),
+        usersFiltered= methods.searchFilter(sortedUsers, position, searchText.trim().toLowerCase());
+    this.setState({usersToRender: usersFiltered});
   }
 
   handleModalOpen(username){
-    var modalUser= {};
-    this.state.usersToRender.forEach((letter) =>{
-      letter.users.forEach((user) => {
-        if (user.login.username === username){
-          modalUser= user;
-        }
-      })
-    })
+    const modalUser= methods.findModalUser(this.state.usersToRender, username);
     this.setState({showModal: true, modalUser: modalUser})
   }
 
