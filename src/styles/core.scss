@@ -19,3 +19,74 @@ body {
 *:after {
   box-sizing: inherit;
 }
+
+.col-md-3 {
+  width: 24%
+}
+
+.search-box {
+  border: 2px solid black;
+}
+
+.search-box input {
+  border-radius: 4px;
+  margin-top: 10px
+}
+
+.search-bar {
+  margin-top: 20px;
+  margin-left: 3px;
+  padding-left: 10px;
+}
+
+.sort-by {
+  font-weight: bold;
+}
+
+.sort-by label {
+  display: block;
+  font-weight: bold;
+}
+.sort-by span {
+  margin-left: 10px;
+}
+
+.first-letter-row {
+  border-bottom: 2px solid black;
+}
+.first-letter {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.user-card-row {
+  margin-top: 10px;
+  margin-bottom: 10px
+}
+
+.user-card {
+  text-align: center;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  background-color: #fafafa;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+}
+
+.user-card:hover {
+  box-shadow: 0 5px 15px rgba(0,0,0,0.7);
+}
+
+.user-card img {
+  width: 90px;
+  height: 90px;
+}
+
+
+.modal-body {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  background-color: #fafafa;
+}
+
+
