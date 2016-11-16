@@ -29,4 +29,9 @@ const SortBy= (props) => {
     )
 }
 
+SortBy.propTypes = {
+  namePosition: React.PropTypes.string,
+  handleSortByChange: React.PropTypes.func
+}
+
 export default SortBy;

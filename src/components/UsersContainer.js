@@ -26,4 +26,10 @@ const UsersContainer= (props) =>{
     )
 }
 
+UsersContainer.propTypes = {
+  users: React.PropTypes.array,
+  openModal: React.PropTypes.func,
+  firstLetter: React.PropTypes.string
+}
+
 export default UsersContainer;

@@ -12,4 +12,14 @@ const UsersCard= (props) => {
     )
 }
 
+UsersCard.propTypes = {
+  openModal: React.PropTypes.func,
+  firstLetter: React.PropTypes.string,
+  name: React.PropTypes.object,
+  dob: React.PropTypes.string,
+  picture: React.PropTypes.string,
+  city: React.PropTypes.string,
+  username: React.PropTypes.string
+}
+
 export default UsersCard;

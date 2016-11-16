@@ -2,7 +2,7 @@ import React from 'react';
 import UsersContainer from './UsersContainer';
 
 const UsersList= (props) => {
-  const usersContainersList= props.users.map((userContainer, index) => {
+  const usersContainersList= props.users.map((userContainer) => {
     return <UsersContainer
             firstLetter= {userContainer.firstLetter}
             key= {userContainer.firstLetter}
@@ -14,6 +14,11 @@ const UsersList= (props) => {
   return (
     <div>{ usersContainersList }</div>
     )
+}
+
+UsersList.propTypes = {
+  users: React.PropTypes.array,
+  openModal: React.PropTypes.func,
 }
 
 export default UsersList;
