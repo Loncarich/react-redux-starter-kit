@@ -17,7 +17,7 @@ class SearchBar extends Component {
 
   render(){
     return (
-      <div className= 'col-md-4 col-sm-3 col-xs-5 search-bar'>
+      <div className= 'col-xs-5 search-bar'>
         <input
           type="text"
           placeholder="Search Name"

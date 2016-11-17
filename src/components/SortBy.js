@@ -3,7 +3,7 @@ import React from 'react';
 const SortBy= (props) => {
 
   return (
-    <div className= 'col-md-4 col-sm-3 col-xs-5 sort-by'>
+    <div className= 'col-xs-5 sort-by'>
       <div>Sort By</div>
       <label>
           <input
