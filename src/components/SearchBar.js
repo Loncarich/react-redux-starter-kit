@@ -21,7 +21,7 @@ class SearchBar extends React.Component {
         <input
           id="form-control"
           type="text"
-          placeholder={'Search '+ methods.capitalizeFirstLetter(this.props.namePosition) + ' Name'}
+          placeholder="Search Name"
           value={this.state.searchText}
           onChange={this.handleSearchChangeLocal}
           />

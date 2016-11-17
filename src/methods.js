@@ -22,16 +22,19 @@ module.exports = {
     });
     return modalUser;
   },
-  flattenAndSortUsers: function(arr, position){
+  flattenUsers: function(arr, position){
     var tempUsers= [];
     arr.forEach((letter) => {
-      letter.users.forEach((user) =>{
+      letter.users.forEach((user) => {
         tempUsers.push(user);
       })
     });
-    return this.sortAndGroupByFirstLetter(tempUsers, position);
+    return tempUsers;
   },
-  groupUsersByFirstLetter: function(sortedUsers, position){
+  groupUsersByFirstLetter: function(sortedUsers, position, init){
+    if (init){
+      sortedUsers= this.configureNameCityDOB(sortedUsers);
+    }
     var finalResults= [];
     var tempResults= [sortedUsers[0]];
     for (var i= 1; i< sortedUsers.length; i++){
@@ -45,24 +48,26 @@ module.exports = {
     finalResults.push({firstLetter: sortedUsers[sortedUsers.length-1].name[position].charAt(0), users: tempResults.slice(0)});
     return finalResults;
   },
-  searchFilter: function(arr, position, searchTextLower){
+  searchFilter: function(arr, searchTextLower){
     return arr.filter((letter) => {
               var tempLetter= letter.users.filter((user) => {
-                var name= user.name[position];
+                var name= user.name.first +' '+ user.name.last;
                 return name.toLowerCase().match(searchTextLower);
-              });
+              })
               letter.users= tempLetter;
               return tempLetter.length > 0;
             });
   },
-  sortAndGroupByFirstLetter: function(arr, position){
+  sortAndGroupByFirstLetter: function(arr, position, init){
+      if (!init){
+        arr= this.flattenUsers(arr, position);
+      }
       var sortedUsers= arr.sort((a, b) => {
         if(a.name[position] < b.name[position]) return -1;
         if(a.name[position] > b.name[position]) return 1;
         return 0;
       });
-      sortedUsers= this.configureNameCityDOB(sortedUsers);
-      return this.groupUsersByFirstLetter(sortedUsers, position);
+      return this.groupUsersByFirstLetter(sortedUsers, position, init);
     },
   trimDOB: function(str){
     var strArr= str.split(' ');

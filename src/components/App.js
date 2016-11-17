@@ -29,7 +29,7 @@ class App extends React.Component {
       url: 'https://randomuser.me/api/?results=60',
       dataType: 'json',
       success: function(data) {
-        const finalResults= methods.sortAndGroupByFirstLetter(data.results, 'last');
+        const finalResults= methods.sortAndGroupByFirstLetter(data.results, 'last', true);
         self.setState({usersFull: finalResults, usersToRender: finalResults})
       }
     });
@@ -37,14 +37,15 @@ class App extends React.Component {
 
   handleSortByChange(option){
     var usersCopy= this.state.usersToRender.slice();
-    const newUsers= methods.flattenAndSortUsers(usersCopy, option);
+    console.log('usersCopy', usersCopy);
+    const newUsers= methods.sortAndGroupByFirstLetter(usersCopy, option, false);
     this.setState({usersToRender: newUsers, namePosition: option});
   }
 
   handleSearchChange(searchText, position){
     var usersCopy= this.state.usersFull.slice(),
-        sortedUsers= methods.flattenAndSortUsers(usersCopy, this.state.namePosition),
-        usersFiltered= methods.searchFilter(sortedUsers, position, searchText.trim().toLowerCase());
+        sortedUsers= methods.sortAndGroupByFirstLetter(usersCopy, this.state.namePosition, false),
+        usersFiltered= methods.searchFilter(sortedUsers, searchText.trim().toLowerCase());
     this.setState({usersToRender: usersFiltered});
   }
 
@@ -80,7 +81,7 @@ class App extends React.Component {
                 <div>City: {this.state.modalUser.location.city}</div>
                 <div>Email: {this.state.modalUser.email}</div>
               </div>
-              : <div></div>}
+              : <noscript/>}
           </Modal.Body>
           <Modal.Footer>
             <Button onClick={this.handleModalClose}>Close</Button>
