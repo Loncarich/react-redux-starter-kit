@@ -65,7 +65,14 @@ body {
 }
 
 .user-card {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
+  padding: 5px 0;
   margin-right: 10px;
   margin-bottom: 10px;
   background-color: #fafafa;
