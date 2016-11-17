@@ -19,7 +19,6 @@ class SearchBar extends React.Component {
     return (
       <div className= 'col-md-4 col-sm-3 col-xs-5 search-bar'>
         <input
-          id="form-control"
           type="text"
           placeholder="Search Name"
           value={this.state.searchText}

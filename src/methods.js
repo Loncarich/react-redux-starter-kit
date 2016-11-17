@@ -11,6 +11,16 @@ module.exports = {
       return user;
     })
   },
+  filterSearch: function(arr, searchTextLower){
+    return arr.filter((letter) => {
+              var tempLetter= letter.users.filter((user) => {
+                var name= user.name.first +' '+ user.name.last;
+                return name.toLowerCase().match(searchTextLower);
+              })
+              letter.users= tempLetter;
+              return tempLetter.length > 0;
+            });
+  },
   findModalUser: function(arr, username){
     var modalUser= {};
     arr.forEach((letter) => {
@@ -47,16 +57,6 @@ module.exports = {
     }
     finalResults.push({firstLetter: sortedUsers[sortedUsers.length-1].name[position].charAt(0), users: tempResults.slice(0)});
     return finalResults;
-  },
-  searchFilter: function(arr, searchTextLower){
-    return arr.filter((letter) => {
-              var tempLetter= letter.users.filter((user) => {
-                var name= user.name.first +' '+ user.name.last;
-                return name.toLowerCase().match(searchTextLower);
-              })
-              letter.users= tempLetter;
-              return tempLetter.length > 0;
-            });
   },
   sortAndGroupByFirstLetter: function(arr, position, init){
       if (!init){
