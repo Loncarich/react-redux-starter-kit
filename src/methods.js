@@ -11,15 +11,14 @@ module.exports = {
       return user;
     })
   },
-  filterSearch: function(arr, searchTextLower){
-    return arr.filter((letter) => {
-              var tempLetter= letter.users.filter((user) => {
-                var name= user.name.first +' '+ user.name.last;
-                return name.toLowerCase().match(searchTextLower);
-              })
-              letter.users= tempLetter;
-              return tempLetter.length > 0;
-            });
+  filterSearch: function(arr, position, searchTextLower){
+    var flattenedUsers= this.flattenUsers(arr, position),
+        filteredUsers= flattenedUsers.filter((user) => {
+          var name= user.name.first +' '+ user.name.last;
+          return name.toLowerCase().match(searchTextLower)
+          }),
+        filteredAndSortedUsers= this.sortAndGroupByFirstLetter(filteredUsers, position, true);
+    return filteredAndSortedUsers;
   },
   findModalUser: function(arr, username){
     var modalUser= {};
@@ -58,15 +57,18 @@ module.exports = {
     finalResults.push({firstLetter: sortedUsers[sortedUsers.length-1].name[position].charAt(0), users: tempResults.slice(0)});
     return finalResults;
   },
-  sortAndGroupByFirstLetter: function(arr, position, init){
-      if (!init){
-        arr= this.flattenUsers(arr, position);
-      }
-      var sortedUsers= arr.sort((a, b) => {
+  sortUsersByName: function(arr, position){
+    return arr.sort((a, b) => {
         if(a.name[position] < b.name[position]) return -1;
         if(a.name[position] > b.name[position]) return 1;
         return 0;
       });
+  },
+  sortAndGroupByFirstLetter: function(arr, position, init){
+      if (!init){
+        arr= this.flattenUsers(arr, position);
+      }
+      var sortedUsers= this.sortUsersByName(arr, position);
       return this.groupUsersByFirstLetter(sortedUsers, position, init);
     },
   trimDOB: function(str){

@@ -42,8 +42,7 @@ class App extends React.Component {
 
   handleSearchChange(searchText, position){
     var usersCopy= this.state.usersFull.slice(),
-        sortedUsers= methods.sortAndGroupByFirstLetter(usersCopy, this.state.namePosition, false),
-        usersFiltered= methods.filterSearch(usersCopy, searchText.trim().toLowerCase());
+        usersFiltered= methods.filterSearch(usersCopy, position, searchText.trim().toLowerCase());
     this.setState({usersToRender: usersFiltered});
   }
 
