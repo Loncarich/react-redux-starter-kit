@@ -11,6 +11,10 @@ const UsersList= (props) => {
            />
   })
 
+  if (props.users.length === 0){
+    return <div className='loading'>Loading Users...</div>
+  }
+
   return (
     <div>{ usersContainersList }</div>
     )

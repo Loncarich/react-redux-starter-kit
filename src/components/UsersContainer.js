@@ -17,7 +17,7 @@ const UsersContainer= (props) =>{
   return (
     <div className= 'user-container'>
       <div className="row first-letter-row">
-        <div className="col-sm-1 first-letter">{props.firstLetter.toUpperCase()}</div>
+        <div className="col-xs-1 first-letter">{props.firstLetter.toUpperCase()}</div>
       </div>
       <div className="row user-card-row">
         { usersCardList }

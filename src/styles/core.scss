@@ -89,4 +89,21 @@ body {
   background-color: #fafafa;
 }
 
+.loading {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  margin-top: 30px;
+}
+
+@media only screen and (max-width: 986px) {
+  .user-card {
+    height: 170px;
+    width: 150px;
+    overflow: scroll;
+  }
+}
+
+
+
 

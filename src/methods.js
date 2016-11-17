@@ -15,7 +15,7 @@ module.exports = {
     var flattenedUsers= this.flattenUsers(arr, position),
         filteredUsers= flattenedUsers.filter((user) => {
           var name= user.name.first +' '+ user.name.last;
-          return name.toLowerCase().match(searchTextLower)
+          return name.toLowerCase().match(searchTextLower);
           }),
         filteredAndSortedUsers= this.sortAndGroupByFirstLetter(filteredUsers, position, true);
     return filteredAndSortedUsers;

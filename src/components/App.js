@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import $ from 'jquery';
 import UsersList from './UsersList';
 import SearchBar from './SearchBar';
@@ -6,7 +6,7 @@ import SortBy from './SortBy';
 import ModalLocal from './ModalLocal';
 import methods from '../methods.js';
 
-class App extends React.Component {
+class App extends Component {
   constructor(props){
     super(props);
     this.state = {
